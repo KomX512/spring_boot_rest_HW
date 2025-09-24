@@ -1,9 +1,15 @@
 package SB_HW.spring_boot_rest_HW.service;
 
+import SB_HW.spring_boot_rest_HW.exception.InvalidCredentials;
+import SB_HW.spring_boot_rest_HW.exception.UnauthorizedUser;
+import SB_HW.spring_boot_rest_HW.repository.UserRepository;
+
+import java.util.List;
+
 public class AuthorizationService {
     UserRepository userRepository;
 
-    List<Authorities> getAuthorities(String user, String password) {
+    public List<Authorities> getAuthorities(String user, String password) {
         if (isEmpty(user) || isEmpty(password)) {
             throw new InvalidCredentials("User name or password is empty");
         }
