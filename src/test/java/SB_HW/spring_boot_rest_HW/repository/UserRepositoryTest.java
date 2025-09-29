@@ -9,7 +9,16 @@ public class UserRepositoryTest {
 
     @Test
     void getUserListTest() {
+
         List result = UserRepository.getUsersList();
+
+        System.out.println(result);
+    }
+
+    @Test
+    void getUserAuthoritiesTest(){
+        UserRepository userRepository = new UserRepository();
+        List result = userRepository.getUserAuthorities("Anna", "QuaZZar");
 
         System.out.println(result);
     }

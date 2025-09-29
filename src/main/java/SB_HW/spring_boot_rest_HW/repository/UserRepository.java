@@ -14,6 +14,7 @@ import java.util.Optional;
 public class UserRepository {
 
     public List<Authorities> getUserAuthorities(String user, String password) {
+
         List userList = getUsersList();
         if (userList.size() == 0) {
             return null;
@@ -21,13 +22,13 @@ public class UserRepository {
 
         User chekUser = findUserByName(userList, user);
         if (chekUser == null){
-            return null;
+            return userList;
         }
 
         if (password.equals(chekUser.getPassword())){
             return chekUser.getAuthorities();
         }
-        return null;//TODO;
+        return null;
     }
 
     public static List getUsersList() {
