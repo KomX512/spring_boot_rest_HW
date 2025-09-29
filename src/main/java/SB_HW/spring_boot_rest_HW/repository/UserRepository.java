@@ -4,12 +4,10 @@ import SB_HW.spring_boot_rest_HW.service.Authorities;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class UserRepository {
 
@@ -21,13 +19,14 @@ public class UserRepository {
         }
 
         User chekUser = findUserByName(userList, user);
-        if (chekUser == null){
-            return userList;
+        if (chekUser == null) {
+            return null;
         }
 
-        if (password.equals(chekUser.getPassword())){
+        if (password.equals(chekUser.getPassword())) {
             return chekUser.getAuthorities();
         }
+
         return null;
     }
 
@@ -45,11 +44,13 @@ public class UserRepository {
                 JSONObject current = usersArray.getJSONObject(i);
 
                 User newUser = new User(current.getString("name"),
-                        current.getString("password"),
-                        current.getBoolean("read"),
-                        current.getBoolean("write"),
-                        current.getBoolean("delete"));
+                        current.getString("password"));
 
+                boolean read = current.getBoolean("read");
+                boolean write = current.getBoolean("write");
+                boolean delete = current.getBoolean("delete");
+
+                newUser.fillAuhorities(read, write, delete);
                 usersList.add(newUser);
 
             }

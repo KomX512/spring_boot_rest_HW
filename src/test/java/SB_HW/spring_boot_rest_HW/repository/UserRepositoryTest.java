@@ -16,11 +16,9 @@ public class UserRepositoryTest {
     }
 
     @Test
-    void getUserAuthoritiesTest(){
+    void getUserAuthoritiesTest() {
         UserRepository userRepository = new UserRepository();
         List result = userRepository.getUserAuthorities("Anna", "QuaZZar");
-
-        System.out.println(result);
     }
 
     @Test
